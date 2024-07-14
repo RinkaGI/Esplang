@@ -1,3 +1,5 @@
+from error import *
+
 class Parser:
     def __init__(self, code: str):
         self.code = code
@@ -10,9 +12,12 @@ class Parser:
         self.parseVariables()
         self.parseForLoop()
 
-        with open('output.cpp', 'w') as f:
-            f.write(self.code)
-        return self.code
+        try: 
+            with open('output.cpp', 'w') as f:
+                f.write(self.code)
+            return self.code
+        except:
+            parserError('Hay un error escribiendo el archivo C++')
     
     def parseInclude(self):
         code_lines = self.code.splitlines()
@@ -29,8 +34,11 @@ class Parser:
         self.code = "\n".join(code_lines)
 
     def parseFunctions(self):
+        lineCounter = 0
         codeLines = self.code.splitlines()
         for i, line in enumerate(codeLines):
+
+            lineCounter = lineCounter + 1
             words = line.split()
             ################### PARSING FUNCTIONS AND TYPES #############
             for wordNo, word in enumerate(words):
@@ -40,10 +48,12 @@ class Parser:
                         codeLines[i] = codeLines[i].replace("funcion", "int", 1)
                         codeLines[i] = codeLines[i].replace("entera", "", 1)
                     # MAIN FUNCTION
-                    if words[wordNo + 1] == "principal()" and not self.isString(words[wordNo + 2], line):
+                    elif words[wordNo + 1] == "principal()" and not self.isString(words[wordNo + 2], line):
                         codeLines[i] = codeLines[i].replace("funcion", "int", 1)
                         codeLines[i] = codeLines[i].replace("principal()", "main()")
                         break
+                    else:
+                        syntaxError(f'En la línea: {lineCounter} hay un error de sintaxis declarando una función, debería ser: funcion tipo nombre | funcion principal')
                     
         self.code = "\n".join(codeLines)
 
