@@ -1,0 +1,19 @@
+// LA IDEA DE ESTE PROGRAMA ES QUE PIDA 2 NUMEROS Y ESCRIBA EN LA TERMINAL EL RESULTADO:
+
+importar entradaSalida; // esta linea importa funciones para que podamos interactuar con la consola
+
+// la funcion principal que el compilador va a ir a ejecutar, si no hay da error
+funcion principal() {
+    variable entera primerNumero, segundoNumero, resultado;
+    
+    imprimir << "Introduce el primer numero: ";
+    leer >> primerNumero;
+    imprimir << "Introduce el segundo numero: ";
+    leer >> segundoNumero;
+
+    resultado = primerNumero + segundoNumero;
+
+    imprimir << primerNumero << " + " << segundoNumero << " = " << resultado;
+
+    terminarCorrectamente;
+}

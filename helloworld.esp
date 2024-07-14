@@ -1,0 +1,8 @@
+importar entradaSalida;
+
+funcion principal() {
+    imprimir << "Hola mundo!\n";
+    imprimir << "me llamo alvaro y soy el mas gay del universo";
+
+    terminarCorrectamente;
+}

@@ -1,0 +1,18 @@
+importar entradaSalida;
+
+funcion principal() {
+    variable entera filas;
+
+    imprimir << "Introduce el número de filas: ";
+    leer >> filas;
+
+    para ( variable entera i = 1; i <= filas; ++i ) {
+        para ( variable entera j = 1; j <= i; ++j ) {
+            imprimir << "*";
+        }
+
+        imprimir << "\n";
+    }
+
+    terminarCorrectamente;
+}
